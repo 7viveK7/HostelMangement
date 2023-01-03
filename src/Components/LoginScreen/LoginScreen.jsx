@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Segment } from "semantic-ui-react";
 
 const LoginScreen = () => {
@@ -19,7 +19,7 @@ const LoginScreen = () => {
       </Form>
     );
   };
-
+  const navigate = useNavigate();
   const Login = () => {
     const [input, setInput] = useState({ Username: "", password: "" });
 
@@ -32,7 +32,6 @@ const LoginScreen = () => {
                 <Form.Input
                   icon="user"
                   iconPosition="left"
-                  label={input.Username}
                   placeholder="Username"
                   onChange={(e) =>
                     setInput({ ...input, Username: e.target.value })
@@ -41,14 +40,18 @@ const LoginScreen = () => {
                 <Form.Input
                   icon="lock"
                   iconPosition="left"
-                  label="Password"
                   type="password"
+                  placeholder="Password"
                   onChange={(e) =>
                     setInput({ ...input, password: e.target.value })
                   }
                 />
 
-                <Button content="Login" primary />
+                <Button
+                  content="Login"
+                  primary
+                  onClick={() => navigate("about")}
+                />
               </Form>
             </Grid.Column>
             <Grid.Column verticalAlign="middle">
